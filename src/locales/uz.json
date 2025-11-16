@@ -1,0 +1,63 @@
+{
+  "app": {
+    "title": "Indallo",
+    "login": "Kirish",
+    "logout": "Chiqish",
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi"
+  },
+  "nav": {
+    "profile": "Profil",
+    "summaries": "Qisqa bayonlar",
+    "breakingNews": "Muhim yangiliklar"
+  },
+  "profile": {
+    "title": "Profil",
+    "userInfo": "Foydalanuvchi ma'lumotlari",
+    "name": "Ism",
+    "username": "Foydalanuvchi nomi",
+    "telegramId": "Telegram ID",
+    "subscription": "Obuna",
+    "currentPlan": "Joriy reja",
+    "channels": "Kanallar",
+    "channelCount": "Kanallar soni",
+    "maxChannels": "Maksimal kanallar",
+    "settings": "Sozlamalar",
+    "language": "Til",
+    "time": "Vaqt",
+    "upgrade": "Rejani yangilash",
+    "active": "Faol",
+    "expired": "Muddati tugagan",
+    "trial": "Sinov",
+    "free": "Bepul",
+    "basic": "Asosiy",
+    "premium": "Premium"
+  },
+  "summaries": {
+    "title": "Qisqa bayonlar",
+    "noSummaries": "Bayonlar topilmadi",
+    "selectDate": "Sanani tanlang",
+    "today": "Bugun",
+    "yesterday": "Kecha",
+    "twoDaysAgo": "Ikki kun oldin",
+    "channel": "Kanal",
+    "noPosts": "Bu kanalda postlar yo'q"
+  },
+  "breakingNews": {
+    "title": "Muhim yangiliklar",
+    "noAccess": "Bu funksiyaga kirish uchun obuna kerak",
+    "upgrade": "Rejani yangilash",
+    "noNews": "Yangiliklar topilmadi",
+    "today": "Bugun",
+    "yesterday": "Kecha",
+    "twoDaysAgo": "Ikki kun oldin",
+    "channel": "Kanal"
+  },
+  "common": {
+    "close": "Yopish",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "retry": "Qayta urinish"
+  }
+}
+

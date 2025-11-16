@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: indallo-web
+    env: node
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://your-api-domain.com
+      - key: VITE_BOT_USERNAME
+        value: your_bot_username
+

@@ -1,0 +1,63 @@
+{
+  "app": {
+    "title": "Indallo",
+    "login": "Login",
+    "logout": "Logout",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "nav": {
+    "profile": "Profile",
+    "summaries": "Summaries",
+    "breakingNews": "Breaking News"
+  },
+  "profile": {
+    "title": "Profile",
+    "userInfo": "User Information",
+    "name": "Name",
+    "username": "Username",
+    "telegramId": "Telegram ID",
+    "subscription": "Subscription",
+    "currentPlan": "Current Plan",
+    "channels": "Channels",
+    "channelCount": "Channel Count",
+    "maxChannels": "Max Channels",
+    "settings": "Settings",
+    "language": "Language",
+    "time": "Time",
+    "upgrade": "Upgrade Plan",
+    "active": "Active",
+    "expired": "Expired",
+    "trial": "Trial",
+    "free": "Free",
+    "basic": "Basic",
+    "premium": "Premium"
+  },
+  "summaries": {
+    "title": "Summaries",
+    "noSummaries": "No summaries found",
+    "selectDate": "Select date",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "twoDaysAgo": "2 days ago",
+    "channel": "Channel",
+    "noPosts": "No posts in this channel"
+  },
+  "breakingNews": {
+    "title": "Breaking News",
+    "noAccess": "Subscription required to access this feature",
+    "upgrade": "Upgrade Plan",
+    "noNews": "No news found",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "twoDaysAgo": "2 days ago",
+    "channel": "Channel"
+  },
+  "common": {
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "retry": "Retry"
+  }
+}
+

@@ -1,0 +1,63 @@
+{
+  "app": {
+    "title": "Indallo",
+    "login": "Войти",
+    "logout": "Выйти",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка"
+  },
+  "nav": {
+    "profile": "Профиль",
+    "summaries": "Краткие сводки",
+    "breakingNews": "Важные новости"
+  },
+  "profile": {
+    "title": "Профиль",
+    "userInfo": "Информация о пользователе",
+    "name": "Имя",
+    "username": "Имя пользователя",
+    "telegramId": "Telegram ID",
+    "subscription": "Подписка",
+    "currentPlan": "Текущий план",
+    "channels": "Каналы",
+    "channelCount": "Количество каналов",
+    "maxChannels": "Максимум каналов",
+    "settings": "Настройки",
+    "language": "Язык",
+    "time": "Время",
+    "upgrade": "Обновить план",
+    "active": "Активна",
+    "expired": "Истекла",
+    "trial": "Пробная",
+    "free": "Бесплатный",
+    "basic": "Базовый",
+    "premium": "Премиум"
+  },
+  "summaries": {
+    "title": "Краткие сводки",
+    "noSummaries": "Сводки не найдены",
+    "selectDate": "Выберите дату",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "twoDaysAgo": "Позавчера",
+    "channel": "Канал",
+    "noPosts": "В этом канале нет постов"
+  },
+  "breakingNews": {
+    "title": "Важные новости",
+    "noAccess": "Требуется подписка для доступа к этой функции",
+    "upgrade": "Обновить план",
+    "noNews": "Новости не найдены",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "twoDaysAgo": "Позавчера",
+    "channel": "Канал"
+  },
+  "common": {
+    "close": "Закрыть",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "retry": "Повторить"
+  }
+}
+
