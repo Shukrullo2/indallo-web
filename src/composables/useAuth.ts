@@ -52,12 +52,11 @@ export function useAuth() {
   const handleAuthCallback = (): void => {
     const urlParams = new URLSearchParams(window.location.search)
     const telegramId = urlParams.get('telegram_id')
-    const authHash = urlParams.get('hash')
     
-    if (telegramId && authHash) {
-      // Verify hash if needed (Telegram Web Login provides hash for verification)
+    if (telegramId) {
+      // Load user data and store telegram_id
       loadUser(telegramId)
-      // Clean URL
+      // Clean URL (remove query params)
       window.history.replaceState({}, '', window.location.pathname)
     }
   }
