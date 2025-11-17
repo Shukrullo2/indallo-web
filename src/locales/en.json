@@ -15,6 +15,7 @@
     "title": "Profile",
     "userInfo": "User Information",
     "name": "Name",
+    "phoneNumber": "Phone Number",
     "username": "Username",
     "telegramId": "Telegram ID",
     "subscription": "Subscription",
@@ -26,6 +27,19 @@
     "language": "Language",
     "time": "Time",
     "upgrade": "Upgrade Plan",
+    "save": "Save",
+    "channels": "Channels",
+    "remove": "Remove",
+    "noChannels": "No channels",
+    "addChannelHelp": "Send the channel username to the bot to add a channel",
+    "planDetails": "Plan Details",
+    "price": "Price",
+    "features": "Features",
+    "maxChannelsLabel": "Max Channels",
+    "aiChat": "AI Chat",
+    "breakingNews": "Breaking News",
+    "expiresAt": "Expires At",
+    "trialExpiresAt": "Trial Expires At",
     "active": "Active",
     "expired": "Expired",
     "trial": "Trial",
@@ -35,19 +49,22 @@
   },
   "summaries": {
     "title": "Summaries",
-    "noSummaries": "No summaries found",
+    "noSummaries": "No summaries found. Summaries for newly added channels will appear after they are generated from the bot",
     "selectDate": "Select date",
     "today": "Today",
     "yesterday": "Yesterday",
     "twoDaysAgo": "2 days ago",
     "channel": "Channel",
-    "noPosts": "No posts in this channel"
+    "noPosts": "No posts in this channel",
+    "allChannels": "All Channels",
+    "getSummaryNow": "Get Summary Now",
+    "more": "More"
   },
   "breakingNews": {
     "title": "Breaking News",
     "noAccess": "Subscription required to access this feature",
     "upgrade": "Upgrade Plan",
-    "noNews": "No news found",
+    "noNews": "Breaking news is updated daily at 12:00 and 20:00",
     "today": "Today",
     "yesterday": "Yesterday",
     "twoDaysAgo": "2 days ago",
@@ -58,6 +75,11 @@
     "save": "Save",
     "cancel": "Cancel",
     "retry": "Retry"
+  },
+  "registrationRequired": {
+    "title": "Registration Required",
+    "message": "Please register in the bot and share your contact information first, then open the mini app.",
+    "openBot": "Open Bot"
   }
 }
 

@@ -27,11 +27,47 @@
           {{ subscription.max_channels || 3 }}
         </span>
       </div>
+      
       <div v-if="subscription.subscription.subscription_expires_at" class="detail-item">
-        <span class="detail-label">{{ t('profile.expired') }}</span>
+        <span class="detail-label">{{ t('profile.expiresAt') }}</span>
         <span class="detail-value">
           {{ formatDate(subscription.subscription.subscription_expires_at) }}
         </span>
+      </div>
+      
+      <div v-if="subscription.subscription.trial_expires_at && subscription.subscription.trial_active" class="detail-item">
+        <span class="detail-label">{{ t('profile.trialExpiresAt') }}</span>
+        <span class="detail-value">
+          {{ formatDate(subscription.subscription.trial_expires_at) }}
+        </span>
+      </div>
+    </div>
+
+    <div v-if="subscription.plan" class="plan-features">
+      <h4 class="features-title">{{ t('profile.planDetails') }}</h4>
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-label">{{ t('profile.maxChannelsLabel') }}:</span>
+          <span class="feature-value">{{ subscription.plan.max_channels }}</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">{{ t('profile.aiChat') }}:</span>
+          <span class="feature-value">
+            {{ subscription.plan.ai_chat_enabled ? '✓' : '✗' }}
+          </span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">{{ t('profile.breakingNews') }}:</span>
+          <span class="feature-value">
+            {{ subscription.plan.breaking_news_enabled ? '✓' : '✗' }}
+          </span>
+        </div>
+        <div v-if="subscription.plan.price_soums > 0" class="feature-item">
+          <span class="feature-label">{{ t('profile.price') }}:</span>
+          <span class="feature-value">
+            {{ subscription.plan.price_soums.toLocaleString() }} so'm
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -66,7 +102,8 @@ const handleUpgrade = () => {
   // Redirect to subscription management (could be a modal or separate page)
   const botUsername = import.meta.env.VITE_BOT_USERNAME || ''
   if (botUsername) {
-    window.location.href = `https://t.me/${botUsername}`
+    const cleanUsername = botUsername.replace('@', '')
+    window.location.href = `https://t.me/${cleanUsername}`
   }
 }
 
@@ -140,6 +177,7 @@ const formatDate = (dateString: string): string => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 20px;
 }
 
 .detail-item {
@@ -157,5 +195,37 @@ const formatDate = (dateString: string): string => {
   font-size: 16px;
   font-weight: 600;
 }
-</style>
 
+.plan-features {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.features-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.feature-label {
+  opacity: 0.9;
+}
+
+.feature-value {
+  font-weight: 600;
+}
+</style>

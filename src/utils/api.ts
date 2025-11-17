@@ -57,11 +57,26 @@ class ApiService {
     return response.data
   }
 
+  async checkUserExists(telegramId: string): Promise<boolean> {
+    try {
+      await this.client.get(`/api/users/check/${telegramId}/`)
+      return true
+    } catch (error: any) {
+      if (error.status === 404) {
+        return false
+      }
+      // For other errors, rethrow
+      throw error
+    }
+  }
+
   async updateUserLanguage(telegramId: string, language: string): Promise<void> {
     await this.client.post('/api/users/set_language/', {
       telegram_id: telegramId,
       language_code: language,
     })
+    // Notify bot to update cache
+    await this.notifyBotCacheUpdate(telegramId)
   }
 
   async updateUserTime(telegramId: string, hour: string): Promise<void> {
@@ -69,6 +84,29 @@ class ApiService {
       telegram_id: telegramId,
       hour,
     })
+    // Notify bot to update cache
+    await this.notifyBotCacheUpdate(telegramId)
+  }
+
+  async removeChannel(telegramId: string, channelId: string): Promise<void> {
+    await this.client.post('/api/channels/remove/', {
+      telegram_id: telegramId,
+      channel_id: channelId,
+    })
+    // Notify bot to update cache
+    await this.notifyBotCacheUpdate(telegramId)
+  }
+
+  private async notifyBotCacheUpdate(telegramId: string): Promise<void> {
+    // Call backend endpoint to notify bot to refresh user preferences
+    try {
+      await this.client.post('/api/users/refresh-cache/', {
+        telegram_id: telegramId,
+      })
+    } catch (error) {
+      // Silently fail - this is just a cache update notification
+      console.warn('Failed to notify bot cache update:', error)
+    }
   }
 
   // Subscription endpoints
@@ -92,7 +130,11 @@ class ApiService {
   // Channel endpoints
   async getUserChannels(telegramId: string): Promise<Channel[]> {
     const response = await this.client.get(`/api/channels/user/id/${telegramId}/`)
-    return response.data
+    // Ensure we return an array even if the response is not an array
+    if (Array.isArray(response.data)) {
+      return response.data
+    }
+    return []
   }
 
   // Post/Summary endpoints
@@ -104,8 +146,21 @@ class ApiService {
     const params: any = {}
     if (startDate) params.start_date = startDate
     if (endDate) params.end_date = endDate
+    console.log(`Fetching posts for channel ${channelId} with dates:`, { startDate, endDate })
+    
+    // First, try without date filtering to see if posts exist
+    const testResponse = await this.client.get(`/api/posts/channel/${channelId}/`, { params: {} })
+    console.log(`Total posts for channel ${channelId} (no date filter):`, testResponse.data?.length || 0)
+    if (testResponse.data && testResponse.data.length > 0) {
+      // Show sample post dates
+      const samplePost = testResponse.data[0]
+      console.log(`Sample post dates - posted_date: ${samplePost.posted_date}, created: ${samplePost.created}`)
+    }
+    
+    // Now fetch with date filtering
     const response = await this.client.get(`/api/posts/channel/${channelId}/`, { params })
-    return response.data
+    console.log(`Response for channel ${channelId} (with date filter):`, response.data?.length || 0, 'posts')
+    return response.data || []
   }
 
   async getUserSummaries(
@@ -115,20 +170,39 @@ class ApiService {
   ): Promise<PostGroupedByChannel[]> {
     // Get user's channels first
     const channels = await this.getUserChannels(telegramId)
+    console.log('User channels:', channels)
+    
+    if (!channels || channels.length === 0) {
+      console.warn('No channels found for user:', telegramId)
+      return []
+    }
     
     // Fetch posts for each channel
     const promises = channels.map(async (channel) => {
-      const posts = await this.getPostsByChannel(channel.telegram_id, startDate, endDate)
-      return {
-        channel_id: channel.telegram_id,
-        channel_title: channel.title,
-        channel_username: channel.username,
-        posts,
+      try {
+        const posts = await this.getPostsByChannel(channel.telegram_id, startDate, endDate)
+        console.log(`Posts for channel ${channel.title}:`, posts.length)
+        return {
+          channel_id: channel.telegram_id,
+          channel_title: channel.title,
+          channel_username: channel.username,
+          posts: posts || [],
+        }
+      } catch (error) {
+        console.error(`Error fetching posts for channel ${channel.title}:`, error)
+        return {
+          channel_id: channel.telegram_id,
+          channel_title: channel.title,
+          channel_username: channel.username,
+          posts: [],
+        }
       }
     })
 
     const results = await Promise.all(promises)
-    return results.filter((group) => group.posts.length > 0)
+    const filtered = results.filter((group) => group.posts.length > 0)
+    console.log('Filtered summaries:', filtered.length)
+    return filtered
   }
 
   // Breaking news endpoints

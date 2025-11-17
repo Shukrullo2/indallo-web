@@ -15,6 +15,7 @@
     "title": "Profil",
     "userInfo": "Foydalanuvchi ma'lumotlari",
     "name": "Ism",
+    "phoneNumber": "Telefon raqami",
     "username": "Foydalanuvchi nomi",
     "telegramId": "Telegram ID",
     "subscription": "Obuna",
@@ -26,6 +27,19 @@
     "language": "Til",
     "time": "Vaqt",
     "upgrade": "Rejani yangilash",
+    "save": "Saqlash",
+    "channels": "Kanallar",
+    "remove": "O'chirish",
+    "noChannels": "Kanallar yo'q",
+    "addChannelHelp": "Kanal qo'shish uchun botga kanal username'ini yuboring",
+    "planDetails": "Reja tafsilotlari",
+    "price": "Narx",
+    "features": "Imkoniyatlar",
+    "maxChannelsLabel": "Maksimal kanallar",
+    "aiChat": "AI Chat",
+    "breakingNews": "Muhim yangiliklar",
+    "expiresAt": "Muddati tugaydi",
+    "trialExpiresAt": "Sinov muddati tugaydi",
     "active": "Faol",
     "expired": "Muddati tugagan",
     "trial": "Sinov",
@@ -35,19 +49,22 @@
   },
   "summaries": {
     "title": "Qisqa bayonlar",
-    "noSummaries": "Bayonlar topilmadi",
+    "noSummaries": "Bayonlar topilmadi. Yangi qo'shilgan kanallar uchun bayonlar botdan bayonlar yaratilgandan keyin ko'rinadi",
     "selectDate": "Sanani tanlang",
     "today": "Bugun",
     "yesterday": "Kecha",
     "twoDaysAgo": "Ikki kun oldin",
     "channel": "Kanal",
-    "noPosts": "Bu kanalda postlar yo'q"
+    "noPosts": "Bu kanalda postlar yo'q",
+    "allChannels": "Barcha kanallar",
+    "getSummaryNow": "Hozir bayonot olish",
+    "more": "Batafsil"
   },
   "breakingNews": {
     "title": "Muhim yangiliklar",
     "noAccess": "Bu funksiyaga kirish uchun obuna kerak",
     "upgrade": "Rejani yangilash",
-    "noNews": "Yangiliklar topilmadi",
+    "noNews": "Muhim yangiliklar har kuni 12:00 va 20:00 da yangilanadi",
     "today": "Bugun",
     "yesterday": "Kecha",
     "twoDaysAgo": "Ikki kun oldin",
@@ -58,6 +75,11 @@
     "save": "Saqlash",
     "cancel": "Bekor qilish",
     "retry": "Qayta urinish"
+  },
+  "registrationRequired": {
+    "title": "Ro'yxatdan o'tish kerak",
+    "message": "Iltimos, avval botda ro'yxatdan o'ting va kontakt ma'lumotlaringizni ulashing, keyin mini ilovani oching.",
+    "openBot": "Botni ochish"
   }
 }
 

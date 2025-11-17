@@ -1,10 +1,12 @@
 import { ref, computed } from 'vue'
 import type { User, SubscriptionInfo } from '../types/user'
+import type { Channel } from '../types/channel'
 import { apiService } from '../utils/api'
 import { useApi } from './useApi'
 
 const user = ref<User | null>(null)
 const subscription = ref<SubscriptionInfo | null>(null)
+const channels = ref<Channel[]>([])
 
 export function useUser() {
   const { loading, error, execute } = useApi()
@@ -25,6 +27,15 @@ export function useUser() {
     }
   }
 
+  const loadChannels = async (telegramId: string): Promise<void> => {
+    const channelsData = await execute(() =>
+      apiService.getUserChannels(telegramId)
+    )
+    if (channelsData) {
+      channels.value = channelsData
+    }
+  }
+
   const updateLanguage = async (telegramId: string, language: string): Promise<void> => {
     await execute(() => apiService.updateUserLanguage(telegramId, language))
     if (user.value) {
@@ -39,6 +50,13 @@ export function useUser() {
     }
   }
 
+  const removeChannel = async (telegramId: string, channelId: string): Promise<void> => {
+    await execute(() => apiService.removeChannel(telegramId, channelId))
+    // Reload channels and subscription to get updated data
+    await loadChannels(telegramId)
+    await loadSubscription(telegramId)
+  }
+
   const channelCount = computed(() => {
     return subscription.value?.current_channel_count || 0
   })
@@ -50,12 +68,15 @@ export function useUser() {
   return {
     user,
     subscription,
+    channels,
     loading,
     error,
     loadUser,
     loadSubscription,
+    loadChannels,
     updateLanguage,
     updateTime,
+    removeChannel,
     channelCount,
     maxChannels,
   }
